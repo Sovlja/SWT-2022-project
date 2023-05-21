@@ -25,7 +25,6 @@ public class ReportDTO {
         this.id = report.getId();
         this.reportReason = report.getReportReason();
         this.timestamp = report.getTimestamp();
-        this.byUser = report.getByUser();
         this.accepted = report.getAccepted();
     }
 

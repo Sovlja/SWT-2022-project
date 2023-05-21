@@ -21,10 +21,10 @@ public class Report {
     private ReportReason reportReason;
     @Column(nullable = false)
     private LocalDate timestamp;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "users_username", nullable = false)
-    @Column(name = "by user")
-    private User byUser;
+//    @OneToMany(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "users_username", nullable = false)
+//    @Column(name = "by user")
+//    private User byUser;
 
     @Column (name = "accepted")
     private Boolean accepted;

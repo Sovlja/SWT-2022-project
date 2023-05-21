@@ -1,11 +1,17 @@
 package rs.ac.uns.ftn.svtvezbe07.model.dto;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import rs.ac.uns.ftn.svtvezbe07.model.entity.Roles;
 import rs.ac.uns.ftn.svtvezbe07.model.entity.User;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class UserDTO {
 
     private Long id;
@@ -35,5 +41,4 @@ public class UserDTO {
         this.firstname = createdUser.getFirstname();
         this.lastname = createdUser.getLastname();
     }
-    public UserDTO (){}
 }

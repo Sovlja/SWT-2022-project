@@ -1,11 +1,17 @@
 package rs.ac.uns.ftn.svtvezbe07.model.dto;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import rs.ac.uns.ftn.svtvezbe07.model.entity.Group;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class GroupDTO {
 
     private Long id;
@@ -20,13 +26,5 @@ public class GroupDTO {
     private boolean isSuspended;
     private String suspendedReason;
 
-    public GroupDTO (Group group) {
-        this.id = group.getId();
-        this.name = group.getName();
-        this.description = group.getDescription();
-        this.creationTime = group.getCreationDate();
-        this.isSuspended = group.isSuspended();
-        this.suspendedReason = group.getSuspendedReason();
-    }
-    public GroupDTO() {}
+
 }

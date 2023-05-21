@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -24,4 +26,7 @@ public class Comment {
     private LocalDate timestamp;
     @Column(name = "deleted", nullable = false)
     private boolean isDeleted;
+
+    @OneToMany( fetch = FetchType.LAZY)
+    private Set<Reaction> reactionSet= new HashSet<Reaction>();
 }

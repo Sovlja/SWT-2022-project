@@ -1,5 +1,7 @@
 package rs.ac.uns.ftn.svtvezbe07.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +13,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.svtvezbe07.model.dto.JwtAuthenticationRequest;
+import rs.ac.uns.ftn.svtvezbe07.model.dto.PassDTO;
 import rs.ac.uns.ftn.svtvezbe07.model.dto.UserDTO;
 import rs.ac.uns.ftn.svtvezbe07.model.dto.UserTokenState;
 import rs.ac.uns.ftn.svtvezbe07.model.entity.User;
@@ -40,6 +44,9 @@ public class UserController {
 
     @Autowired
     TokenUtils tokenUtils;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     /* Ili preporucen nacin: Constructor Dependency Injection
     @Autowired
@@ -96,5 +103,24 @@ public class UserController {
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public User user(Principal user) {
         return this.userService.findByUsername(user.getName());
+    }
+
+
+    @PostMapping("/changepass")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public HttpStatus user(Principal user,@RequestBody  String dto ) throws JsonProcessingException {
+        User pera = this.userService.findByUsername(user.getName());
+        ObjectMapper mapper = new ObjectMapper();
+        PassDTO passValue = mapper.readValue(dto, PassDTO.class);
+
+        if(passwordEncoder.matches(passValue.getOldPassword1(),pera.getPassword()))
+        {
+
+
+            this.userService.ChangeUserPassword(user.getName(),passValue.getNewPassword());
+            return HttpStatus.ACCEPTED;
+        }
+        else return HttpStatus.NOT_ACCEPTABLE;
+
     }
 }

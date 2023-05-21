@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -28,10 +30,13 @@ public class Group {
     @Column (name = "creationDate", nullable = false)
     private LocalDateTime creationDate;
 
-    @Column (name = "suspended", nullable = false)
-    private boolean isSuspended;
+    @Column(nullable = false)
+    private Long GroupAdmin;
 
-    @Column(name = "suspendedReason")
-    private String suspendedReason;
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.REMOVE)
+    private Set<Post> posts = new HashSet<Post>();
+
+    @Column(name = "deleted")
+    private Boolean deleted;
 
 }

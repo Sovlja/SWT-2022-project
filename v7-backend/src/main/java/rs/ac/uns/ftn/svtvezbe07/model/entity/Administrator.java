@@ -13,7 +13,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "administratorTable")
 public class Administrator extends User{
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "adminId", unique = true, nullable = false)
     private Long adminID;

@@ -9,6 +9,7 @@ import rs.ac.uns.ftn.svtvezbe07.model.entity.User;
 import rs.ac.uns.ftn.svtvezbe07.repository.UserRepository;
 import rs.ac.uns.ftn.svtvezbe07.service.UserService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,13 +55,33 @@ public class UserServiceImpl implements UserService {
         newUser.setUsername(userDTO.getUsername());
         newUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         newUser.setRole(Roles.USER);
+        newUser.setEmail(userDTO.getEmail());
+        newUser.setFirstname(userDTO.getFirstname());
+        newUser.setLastname(userDTO.getLastname());
+        newUser.setLastLogin(LocalDateTime.now());
         newUser = userRepository.save(newUser);
 
         return newUser;
     }
 
     @Override
+    public void ChangeUserPassword(String username,String password) {
+        Optional<User> user = userRepository.findFirstByUsername(username);
+
+        User u=  user.get();
+        u.setPassword(passwordEncoder.encode(password));
+        userRepository.save(u);
+    }
+    @Override
     public List<User> findAll() {
         return this.userRepository.findAll();
+    }
+    @Override
+    public User findUserById(Long id) {
+        return this.userRepository.findUserById(id);
+    }
+    @Override
+    public User saveUser(User user) {
+        return this.userRepository.save(user);
     }
 }
