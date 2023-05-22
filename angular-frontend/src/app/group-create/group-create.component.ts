@@ -1,23 +1,19 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import {AuthServiceService} from "../Services/auth.service.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {GroupService} from "../Services/group.service";
+import {PostService} from "../Services/post.service";
 
 @Component({
-  selector: 'app-register.component',
-  templateUrl: './register.component.component.html',
-  styleUrls: ['./register.component.component.css']
+  selector: 'app-group-create',
+  templateUrl: './group-create.component.html',
+  styleUrls: ['./group-create.component.css']
 })
-export class RegisterComponentComponent {
-
-
-
+export class GroupCreateComponent {
   forma = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-    email: new FormControl(''),
-    fname: new FormControl(''),
-    lname: new FormControl(''),
+    name: new FormControl(''),
+    description : new FormControl(''),
   });
 
   submitted = false;
@@ -37,8 +33,21 @@ export class RegisterComponentComponent {
     private authService: AuthServiceService,
     private router: Router,
     private route: ActivatedRoute,
+    private groupService: GroupService,
+
   ) {
+    if(this.authService.isAuthenticated())
+    {
+
+    }
+    else {
+      let returnUrl : String;
+      returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+      this.router.navigate([returnUrl]);
+    }
+
   }
+
   ngOnInit() {
 
     // get return url from route parameters or default to '/'
@@ -60,8 +69,9 @@ export class RegisterComponentComponent {
 
     this.submitted = true;
     console.warn('Your order has been submitted', this.forma.value);
-    this.authService.signup(this.forma.value)
+    this.groupService.create(this.forma.value)
 
 
   }
+
 }

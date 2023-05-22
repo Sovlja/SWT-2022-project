@@ -17,12 +17,12 @@ public class FriendRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "approved")
+    @Column()
     private Boolean approved;
 
-    @Column(nullable = false, name = "created at")
+    @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(nullable = false, name = "at")
+    @Column(nullable = false)
     private LocalDateTime at;
 }
