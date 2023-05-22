@@ -59,7 +59,7 @@ public class PostServiceImpl {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
             String formatDateTime = post.getCreationDate().format(formatter);
-            postDTO.setCreationDate(LocalDateTime.parse(formatDateTime));
+            postDTO.setCreationDate(formatDateTime);
             postDTO.setId(post.getId());
             postsList.add(postDTO);
         }

@@ -31,7 +31,7 @@ forma :any;
        this.post  = data.body;
        this.forma = new FormGroup({
          id: new FormControl(this.post.id),
-         text: new FormControl(this.post.text),
+         content: new FormControl(this.post.content),
 
        });
        this.b=1;

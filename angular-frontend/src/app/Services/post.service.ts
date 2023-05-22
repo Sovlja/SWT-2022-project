@@ -40,7 +40,7 @@ export class PostService {
     });
     // const body = `username=${user.username}&password=${user.password}`;
     const body = {
-      'tekst': user.post,
+      'text': user.post,
 
 
     };
@@ -65,7 +65,7 @@ export class PostService {
     // const body = `username=${user.username}&password=${user.password}`;
     const body = {
       'id': post.id,
-      'text': post.text,
+      'content': post.content,
 
 
     };

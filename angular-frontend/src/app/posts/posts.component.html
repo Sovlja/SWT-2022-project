@@ -3,10 +3,10 @@
   <label>{{post.user}}</label>
   <br>
   <label>Post DateTime :  </label>
-  <label>{{post.dat}}</label>
+  <label>{{post.creationDate}}</label>
 <br>
   <label>Post Text :  </label>
-  <label>{{post.tekst}}</label>
+  <label>{{post.content}}</label>
   <br>
     <button (click)="getElementId($event)" id="{{post.id}}" >delete</button>
   <button (click)="getElementId($event)" id="{{post.id}}" >edit</button>

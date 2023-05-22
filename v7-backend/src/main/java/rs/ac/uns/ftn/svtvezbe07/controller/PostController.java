@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.svtvezbe07.model.dto.PostDTO;
 import rs.ac.uns.ftn.svtvezbe07.model.dto.PostSaveDTO;
+import rs.ac.uns.ftn.svtvezbe07.model.dto.postupdateDTO;
 import rs.ac.uns.ftn.svtvezbe07.model.entity.Post;
 import rs.ac.uns.ftn.svtvezbe07.model.entity.User;
 import rs.ac.uns.ftn.svtvezbe07.security.TokenUtils;
@@ -41,11 +42,11 @@ public class PostController {
 
     @PostMapping("/create")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public Post createPost(Principal user, @RequestBody @Validated PostDTO dto) {
+    public Post createPost(Principal user, @RequestBody @Validated PostSaveDTO dto) {
 
         User u = this.userService.findByUsername(user.getName());
 
-        Post post = this.postService.createPost(dto.getContent(),u.getId());
+        Post post = this.postService.createPost(dto.getText(),u.getId());
         u.getPosts().add(post);
         userService.saveUser(u);
         return post;
@@ -74,13 +75,13 @@ public class PostController {
 
     @PostMapping("/save")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public HttpStatus savePost(Principal user, @RequestBody @Validated PostSaveDTO dto ) {
+    public HttpStatus savePost(Principal user, @RequestBody @Validated postupdateDTO dto ) {
 
         User u = this.userService.findByUsername(user.getName());
         Post post = postService.getPostById(dto.getId());
         if(post.getUser() == u.getId())
         {
-            post.setContent(dto.getText());
+            post.setContent(dto.getContent());
             postService.savePost(post);
             return HttpStatus.ACCEPTED;
         }
