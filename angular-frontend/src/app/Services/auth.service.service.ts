@@ -69,8 +69,8 @@ export class AuthServiceService {
     // const body = `username=${user.username}&password=${user.password}`;
     const body = {
       'newPassword': user.NewPassword,
-      'oldPassword': user.OldPassword,
-      'oldPassword2': user.OldPassword2
+      'oldPassword1': user.oldPassword1,
+      'oldPassword2': user.oldPassword2
     };
     return this.apiService.post(this.config._passchange_url, JSON.stringify(body), loginHeaders)
       .subscribe((res) => {

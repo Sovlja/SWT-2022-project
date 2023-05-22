@@ -30,8 +30,8 @@ export class PasswordChangeComponent {
 
   forma = new FormGroup({
     NewPassword: new FormControl(''),
-    OldPassword: new FormControl(''),
-    OldPassword2: new FormControl(''),
+    oldPassword1: new FormControl(''),
+    oldPassword2: new FormControl(''),
 
   });
 
