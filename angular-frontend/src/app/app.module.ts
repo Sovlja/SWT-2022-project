@@ -30,9 +30,11 @@ import {GroupService} from "./Services/group.service";
 import { OnePostComponent } from './one-post/one-post.component';
 import { GroupsComponent } from './groups/groups.component';
 import { OneGroupComponent } from './one-group/one-group.component';
+import {MyProfileComponent} from "./my-profile/my-profile.component";
 const routes: Routes = [
   { path: '', component: HomeComponentComponent },
   { path: 'login', component: LoginComponent},
+  { path: 'myProfile', component: MyProfileComponent},
   { path: 'register', component: RegisterComponentComponent },
   { path: 'HomePage', component: HomePageComponent },
   { path: 'passchange', component: PasswordChangeComponent},
@@ -46,6 +48,7 @@ const routes: Routes = [
   declarations: [
     OneGroupComponent,
     GroupsComponent,
+    MyProfileComponent,
     OnePostComponent,
     GroupCreateComponent,
     AppComponent,

@@ -68,7 +68,5 @@ forma :any;
     this.submitted = true;
     console.warn('Your order has been submitted', this.forma.value);
    this.postService.save(this.forma.value);
-
-
   }
 }

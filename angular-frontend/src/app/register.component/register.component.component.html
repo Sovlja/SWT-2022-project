@@ -3,14 +3,24 @@
     font-family: Calibri, Helvetica, sans-serif;
     background-color: pink;
   }
+  .container {
+    border-radius: 15px;
+    margin-left: 20%;
+    margin-right:20%;
+  }
   button {
     background-color: #4CAF50;
-    width: 100%;
-    color: orange;
+    width: 300px;
+    color: blue;
     padding: 15px;
     margin: 10px 0px;
     border: none;
     cursor: pointer;
+  }
+  .buttonContainer {
+    width:100%;
+    display: flex;
+    justify-content: center;
   }
   form {
     border: 3px solid #f1f1f1;
@@ -32,13 +42,19 @@
     margin: 10px 5px;
   }
 
+  #registerHeading{
+    text-align: center;
+  }
+
 
   .container {
     padding: 25px;
-    background-color: lightblue;
+    background-color: blueviolet;
   }
 </style>
+<hr>
 
+<h1 id="registerHeading">~JOIN US AND BECOME NEW USER~</h1>
 <form [formGroup]="forma" (ngSubmit)="onSubmit()">
   <div  class="container">
     <label>Username : </label>
@@ -59,4 +75,8 @@
 
   </div>
 </form>
-<a href="http://localhost:4200/login"><button>Login</button></a>
+<hr>
+<div class="buttonContainer">
+  <a href="http://localhost:4200/login"><button>Login</button></a>
+</div>
+
