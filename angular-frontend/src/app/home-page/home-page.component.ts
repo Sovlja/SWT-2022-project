@@ -86,7 +86,7 @@ export class HomePageComponent {
   ngOnInit() {
 
     this.postService.getAll().subscribe((data) => {
-  this.posta = data;
+    this.posta = data;
 
     });
 

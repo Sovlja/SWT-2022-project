@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import rs.ac.uns.ftn.svtvezbe07.model.dto.UserDTO;
+import rs.ac.uns.ftn.svtvezbe07.model.dto.UserProfileDTO;
 import rs.ac.uns.ftn.svtvezbe07.model.entity.Roles;
 import rs.ac.uns.ftn.svtvezbe07.model.entity.User;
 import rs.ac.uns.ftn.svtvezbe07.repository.UserRepository;
@@ -40,6 +41,15 @@ public class UserServiceImpl implements UserService {
             return user.get();
         }
         return null;
+    }
+
+    @Override
+    public UserProfileDTO findDTOByUsername(String username) {
+        Optional<User> user = userRepository.findFirstByUsername(username);
+        UserProfileDTO userProfileDTO = new UserProfileDTO();
+        userProfileDTO.setDisplayName(user.get().getDisplayName());
+        userProfileDTO.setDescription(user.get().getDescription());
+        return userProfileDTO;
     }
 
     @Override

@@ -34,7 +34,7 @@ import {MyProfileComponent} from "./my-profile/my-profile.component";
 const routes: Routes = [
   { path: '', component: HomeComponentComponent },
   { path: 'login', component: LoginComponent},
-  { path: 'myProfile', component: MyProfileComponent},
+  { path: 'getCurrentUser', component: MyProfileComponent},
   { path: 'register', component: RegisterComponentComponent },
   { path: 'HomePage', component: HomePageComponent },
   { path: 'passchange', component: PasswordChangeComponent},

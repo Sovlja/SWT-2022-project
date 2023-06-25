@@ -16,10 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import rs.ac.uns.ftn.svtvezbe07.model.dto.JwtAuthenticationRequest;
-import rs.ac.uns.ftn.svtvezbe07.model.dto.PassDTO;
-import rs.ac.uns.ftn.svtvezbe07.model.dto.UserDTO;
-import rs.ac.uns.ftn.svtvezbe07.model.dto.UserTokenState;
+import rs.ac.uns.ftn.svtvezbe07.model.dto.*;
 import rs.ac.uns.ftn.svtvezbe07.model.entity.User;
 import rs.ac.uns.ftn.svtvezbe07.security.TokenUtils;
 import rs.ac.uns.ftn.svtvezbe07.service.UserService;
@@ -105,15 +102,29 @@ public class UserController {
         return this.userService.findByUsername(user.getName());
     }
 
+    @GetMapping("/getCurrentUser")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public User getCurrentUser(Principal user) {
+        User found = this.userService.findByUsername(user.getName());
+        return found;
+    }
 
+    @PostMapping("/saveCurrentUser")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public void userSave(Principal user, @RequestBody @Validated UserProfileDTO userProfileDTO) {
+        User found = this.userService.findByUsername(user.getName());
+        found.setDisplayName(userProfileDTO.getDisplayName());
+        found.setDescription(userProfileDTO.getDescription());
+        userService.saveUser(found);
+    }
     @PostMapping("/changepass")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public HttpStatus user(Principal user,@RequestBody  String dto ) throws JsonProcessingException {
-        User pera = this.userService.findByUsername(user.getName());
+        User found = this.userService.findByUsername(user.getName());
         ObjectMapper mapper = new ObjectMapper();
         PassDTO passValue = mapper.readValue(dto, PassDTO.class);
 
-        if(passwordEncoder.matches(passValue.getOldPassword1(),pera.getPassword()))
+        if(passwordEncoder.matches(passValue.getOldPassword1(),found.getPassword()))
         {
 
 
