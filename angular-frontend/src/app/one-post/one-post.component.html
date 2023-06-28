@@ -1,7 +1,5 @@
 <div *ngIf="b ==1" >
-
-
-  <form [formGroup]="forma" (ngSubmit)="onSubmit()" >
+  <form [formGroup]="formPost" (ngSubmit)="onSubmit()" >
 
     <input type="hidden" formControlName="id" value="{{post.id}}"  name="id"><br><br>
     <label>Post Text :  </label>

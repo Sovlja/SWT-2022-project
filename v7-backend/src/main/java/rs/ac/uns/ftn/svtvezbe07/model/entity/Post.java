@@ -33,4 +33,5 @@ public class Post {
     @Column(nullable = true)
     private Boolean deleted;
 
+
 }

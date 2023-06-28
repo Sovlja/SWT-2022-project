@@ -40,6 +40,30 @@ export class AuthServiceService {
     return true;
   }
 
+  changePassword(user:any) {
+    const loginHeaders = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    });
+    // const body = `username=${user.username}&password=${user.password}`;
+    const body = {
+      'newPassword': user.NewPassword,
+      'oldPassword1': user.oldPassword1,
+      'oldPassword2': user.oldPassword2
+    };
+    return this.apiService.post(this.config._passchange_url, JSON.stringify(body), loginHeaders)
+      .subscribe((res) => {
+        if(res.body == "NOT_ACCEPTABLE")
+        {
+          alert("wrong Password")
+        }else {
+          console.log('Change success');
+          let returnUrl : String;
+          returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+          this.router.navigate([returnUrl + "/HomePage"]);
+        }
+      });
+  }
   private _access_token = null;
   login(user:any) {
     const loginHeaders = new HttpHeaders({
@@ -59,31 +83,12 @@ export class AuthServiceService {
         let returnUrl : String;
         returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.router.navigate([returnUrl + "/HomePage"]);
-      });
-  }
-  changePassword(user:any) {
-    const loginHeaders = new HttpHeaders({
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    });
-    // const body = `username=${user.username}&password=${user.password}`;
-    const body = {
-      'newPassword': user.NewPassword,
-      'oldPassword1': user.oldPassword1,
-      'oldPassword2': user.oldPassword2
-    };
-    return this.apiService.post(this.config._passchange_url, JSON.stringify(body), loginHeaders)
-      .subscribe((res) => {
-       if(res.body == "NOT_ACCEPTABLE")
-       {
-         alert("wrong Password")
-       }else {
-         console.log('Change success');
-         let returnUrl : String;
-         returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-         this.router.navigate([returnUrl + "/HomePage"]);
-       }
-      });
+      },
+      (error) => {
+      alert("Wrong Login credentials!!!");
+
+    }
+  );
   }
   signup(user:any) {
     const signupHeaders = new HttpHeaders({
@@ -101,7 +106,7 @@ export class AuthServiceService {
       .subscribe((res) => {
         if(res.body == "NOT_ACCEPTABLE" || res.name == "HttpErrorResponse")
         {
-          alert("Somthing is wrong")
+          alert("Something is wrong")
         }else {
           console.log('Sign up success');
           let returnUrl : String;

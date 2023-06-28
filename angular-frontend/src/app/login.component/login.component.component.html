@@ -1,12 +1,12 @@
  <p  *ngIf="a == 1" class="alert alert-success" >Wrong credentials !</p>
 
-    <form [formGroup]="forma" (ngSubmit)="onSubmit()">
-
+    <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+        <label>Username: </label>
         <input  formControlName="username"  placeholder="" required>
 
       <br>
       <br>
-
+        <label>Password: </label>
         <input formControlName="password"   placeholder="" required type="password">
 
       <input type="submit" value="Login" />

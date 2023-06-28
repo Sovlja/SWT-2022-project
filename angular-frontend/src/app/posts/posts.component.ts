@@ -22,6 +22,11 @@ export class PostsComponent {
     let elementId = element.id;
     if(element.innerText == "delete")
     {
+    //   clickMethod(name: string) {
+    //   if(confirm("Are you sure to delete "+name)) {
+    //     console.log("Implement delete functionality here");
+    //   }
+    // }
       this.postService.delete(elementId);
     }
     if(element.innerText == "edit")

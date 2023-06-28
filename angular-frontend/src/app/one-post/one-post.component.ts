@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PostService} from "../Services/post.service";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormArray, FormControl, FormGroup} from "@angular/forms";
 import {AuthServiceService} from "../Services/auth.service.service";
 @Component({
   selector: 'app-one-post',
@@ -23,14 +23,15 @@ constructor(private _Activatedroute:ActivatedRoute,private postService : PostSer
     this.router.navigate([returnUrl]);
   }
 }
-forma :any;
+formPost :any;
   async ngOnInit() {
 
     this.id = this._Activatedroute.snapshot.paramMap.get("id");
      this.postService.getOne(this.id).subscribe((data) => {
        this.post  = data.body;
-       this.forma = new FormGroup({
+       this.formPost = new FormGroup({
          id: new FormControl(this.post.id),
+         groupList: new FormArray(this.post.groupList),
          content: new FormControl(this.post.content),
 
        });
@@ -66,7 +67,7 @@ forma :any;
      */
 
     this.submitted = true;
-    console.warn('Your order has been submitted', this.forma.value);
-   this.postService.save(this.forma.value);
+    console.warn('Your order has been submitted', this.formPost.value);
+   this.postService.save(this.formPost.value);
   }
 }

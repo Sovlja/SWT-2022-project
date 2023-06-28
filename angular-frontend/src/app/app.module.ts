@@ -57,10 +57,8 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponentComponent,
     HomePageComponent,
-    PasswordChangeComponent,
     GroupCreateComponent,
     PostsComponent,
-    OnePostComponent,
     GroupsComponent,
     OneGroupComponent
   ],

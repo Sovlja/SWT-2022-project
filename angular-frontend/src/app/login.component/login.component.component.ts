@@ -14,7 +14,7 @@ import {AuthServiceService} from '../Services/auth.service.service';
 export class LoginComponent implements OnInit {
   title = 'Login';
 
-  forma = new FormGroup({
+  formLogin = new FormGroup({
     username: new FormControl(''),
     password: new FormControl('')
   });
@@ -65,8 +65,8 @@ back()
      */
 
     this.submitted = true;
-    console.warn('Your order has been submitted', this.forma.value);
-    this.authService.login(this.forma.value)
+    console.warn('Your order has been submitted', this.formLogin.value);
+    this.authService.login(this.formLogin.value)
 
 
   }

@@ -17,6 +17,7 @@ export class ConfigServiceService {
   _deletepost_url: string;
   _postone_url: string;
   _postsave_url: string;
+  _postsavetogroup_url: string;
   _groupone_url: string;
   _groupall_url: string;
   _groupsave_url: string;
@@ -32,7 +33,7 @@ export class ConfigServiceService {
     this._users_url = this._user_url + '/all';
     this._postcreate_url = this._api_url + "/post/create";
     this._saveuser_url = this._user_url + "/saveCurrentUser";
-
+    this._postsavetogroup_url = this._api_url + "/post/createInGroup"
     this._signup_url = this._user_url + '/signup';
     this._postAll_url = this._api_url + "/post/All";
     this._deletepost_url= this._api_url + "/post/delete";

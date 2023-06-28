@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {PostService} from "../Services/post.service";
 import {UserServiceService} from "../user-service.service";
+import {GroupService} from "../Services/group.service";
 
 @Component({
   selector: 'app-home-page',
@@ -12,40 +13,23 @@ import {UserServiceService} from "../user-service.service";
 })
 export class HomePageComponent {
 
-  forma = new FormGroup({
+  formPost = new FormGroup({
     post: new FormControl(''),
+    groupList: new FormControl()
   });
-
   submitted = false;
 
-  /**
-   * Notification message from received
-   * form request or router
-   */
-
-
-
-
-
-
-
-   posta:any;
-
-
-
-
+  allGroups:any;
+   allPosts:any;
   onSubmit() {
     /**
      * Innocent until proven guilty
      */
 
     this.submitted = true;
-    console.warn('Your order has been submitted', this.forma.value);
-    this.postService.create(this.forma.value)
+    console.warn('Your order has been submitted', this.formPost.value);
+    this.postService.create(this.formPost.value)
     location.reload();
-
-
-
   }
   constructor(
     private authService: AuthServiceService,
@@ -54,6 +38,7 @@ export class HomePageComponent {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private postService : PostService,
+    private groupService : GroupService
 
   ) {
     if(this.authService.isAuthenticated())
@@ -67,9 +52,6 @@ export class HomePageComponent {
     }
 
   }
-
-
-
   myFunction()
   {
     let returnUrl : String;
@@ -86,10 +68,13 @@ export class HomePageComponent {
   ngOnInit() {
 
     this.postService.getAll().subscribe((data) => {
-    this.posta = data;
+    this.allPosts = data;
 
     });
 
+    this.groupService.getAll().subscribe((data) => {
+      this.allGroups = data;
+    })
 
 
   }

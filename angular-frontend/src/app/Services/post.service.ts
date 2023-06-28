@@ -38,24 +38,50 @@ export class PostService {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     });
-    // const body = `username=${user.username}&password=${user.password}`;
-    const body = {
-      'text': user.post,
 
+    if(user.groupList == null) {
+      alert("Destination must be choosen!")
+      return;
+    }
 
-    };
-    return this.apiService.post(this.config._postcreate_url, JSON.stringify(body), loginHeaders)
-      .subscribe((res) => {
-        if(res.body == "NOT_ACCEPTABLE" || res.name == "HttpErrorResponse")
-        {
-          alert("wrong Details")
-        }else {
-          alert("Creation success");
-          let returnUrl : String;
-          returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-          this.router.navigate([returnUrl + "/HomePage"]);
-        }
-      });
+    if(user.groupList == 0){
+      const body = {
+        'text': user.post,
+
+      };
+      alert("Post created on my profile!")
+      return this.apiService.post(this.config._postcreate_url, JSON.stringify(body), loginHeaders)
+        .subscribe((res) => {
+          if(res.body == "NOT_ACCEPTABLE" || res.name == "HttpErrorResponse")
+          {
+            alert("Wrong Details")
+          }else {
+            alert("Creation success");
+            let returnUrl : String;
+            returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+            this.router.navigate([returnUrl + "/HomePage"]);
+          }
+        });
+    }
+    else{
+      const body = {
+        'text': user.post,
+        'groupID':user.groupList
+      };
+      alert("Post created in selected group!")
+      return this.apiService.post(this.config._postsavetogroup_url, JSON.stringify(body), loginHeaders)
+        .subscribe((res) => {
+          if(res.body == "NOT_ACCEPTABLE" || res.name == "HttpErrorResponse")
+          {
+            alert("Wrong Details")
+          }else {
+            alert("Creation success");
+            let returnUrl : String;
+            returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+            this.router.navigate([returnUrl + "/HomePage"]);
+          }
+        });
+    }
   }
   save(post:any) {
     const loginHeaders = new HttpHeaders({
@@ -65,10 +91,12 @@ export class PostService {
     // const body = `username=${user.username}&password=${user.password}`;
     const body = {
       'id': post.id,
+      'groupList': post.groupList,
       'content': post.content,
 
 
     };
+
     return this.apiService.post(this.config._postsave_url, JSON.stringify(body), loginHeaders)
       .subscribe((res) => {
         if(res.body == "NOT_ACCEPTABLE" || res.name == "HttpErrorResponse")
