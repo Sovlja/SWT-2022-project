@@ -93,6 +93,14 @@ public class PostController {
 
     }
 
+    @GetMapping("/getAll")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public List<PostDTO> absolutellyAllPosts(Principal user) {
+
+        return postService.getAbsolutellyAllPosts();
+
+    }
+
     @PostMapping("/save")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public HttpStatus savePost(Principal user, @RequestBody @Validated postupdateDTO dto ) {

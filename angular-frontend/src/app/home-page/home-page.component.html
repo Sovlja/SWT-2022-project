@@ -1,5 +1,5 @@
 <h2>Inposter - Social Network beta v0.1</h2>
-<a><button (click)="myFunction()">Change Password</button></a>
+<a><button (click)="changePassword()">Change Password</button></a>
 <a><button (click)="LogOut()">Logout</button></a>
 
 <br>
@@ -37,3 +37,8 @@
 <h4>My Posts</h4>
 <app-posts [posts]="allPosts">
 </app-posts>
+<h4>Feed</h4>
+<app-all-posts [posts]="allFeedPosts">
+</app-all-posts>
+
+

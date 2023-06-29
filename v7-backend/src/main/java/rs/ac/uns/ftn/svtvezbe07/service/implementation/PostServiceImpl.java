@@ -65,4 +65,22 @@ public class PostServiceImpl {
         }
         return postsList;
     }
+
+    public List<PostDTO> getAbsolutellyAllPosts() {
+
+        List<PostDTO> allPostsList= new ArrayList<PostDTO>();
+        List<Post> postsEntityList = postRepository.findAllByDeleted(false);
+        for (Post post : postsEntityList) {
+            PostDTO postDTO = new PostDTO();
+            postDTO.setUser(userService.findUserById(post.getUser()).getFirstname());
+            postDTO.setContent(post.getContent());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+            String formatDateTime = post.getCreationDate().format(formatter);
+            postDTO.setCreationDate(formatDateTime);
+            postDTO.setId(post.getId());
+            allPostsList.add(postDTO);
+        }
+        return allPostsList;
+    }
 }

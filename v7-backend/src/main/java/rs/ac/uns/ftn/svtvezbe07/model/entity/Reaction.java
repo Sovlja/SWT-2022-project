@@ -18,6 +18,7 @@ public class Reaction {
     private Long id;
 
     @Column(nullable = false, name = "type")
+    @Enumerated(EnumType.STRING)
     private ReactionType type;
 
     @Column(nullable = false, name = "timestamp")

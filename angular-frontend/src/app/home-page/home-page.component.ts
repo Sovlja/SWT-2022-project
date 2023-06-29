@@ -19,6 +19,7 @@ export class HomePageComponent {
   });
   submitted = false;
 
+  allFeedPosts:any;
   allGroups:any;
    allPosts:any;
   onSubmit() {
@@ -52,7 +53,7 @@ export class HomePageComponent {
     }
 
   }
-  myFunction()
+  changePassword()
   {
     let returnUrl : String;
     returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/passchange';
@@ -76,6 +77,10 @@ export class HomePageComponent {
       this.allGroups = data;
     })
 
+    this.postService.getAbsAll().subscribe((data) => {
+      this.allFeedPosts = data;
+
+    });
 
   }
 }

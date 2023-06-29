@@ -28,6 +28,8 @@ public class Post {
     private LocalDateTime creationDate;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private Set<Reaction> reactions = new HashSet<Reaction>();
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Set<Comment> comments = new HashSet<Comment>();
 
     @Column(nullable = true)

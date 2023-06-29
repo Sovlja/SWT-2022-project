@@ -31,27 +31,17 @@ formPost :any;
        this.post  = data.body;
        this.formPost = new FormGroup({
          id: new FormControl(this.post.id),
-         groupList: new FormArray(this.post.groupList),
          content: new FormControl(this.post.content),
 
        });
-       this.b=1;
+       this.renderable=1;
     });
 
   }
   id :any;
   post:any;
-  b= 0;
-
+  renderable= 0;
   submitted = false;
-
-  /**
-   * Notification message from received
-   * form request or router
-   */
-
-
-
 
   private returnUrl: any;
   public a: any;
@@ -62,10 +52,6 @@ formPost :any;
     this.router.navigate([returnUrl+"/HomePage"]);
   }
   onSubmit() {
-    /**
-     * Innocent until proven guilty
-     */
-
     this.submitted = true;
     console.warn('Your order has been submitted', this.formPost.value);
    this.postService.save(this.formPost.value);

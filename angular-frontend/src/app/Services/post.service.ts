@@ -112,20 +112,14 @@ export class PostService {
   }
   public g : any;
   getAll() {
-
-
-
      return this.apiService.get(this.config._postAll_url);
+  }
 
+  getAbsAll() {
+    return this.apiService.get(this.config._abs_allpost_url);
   }
   getOne(a:any) {
-
-
-
-    // const body = `username=${user.username}&password=${user.password}`;
     const body =a;
-
     return this.apiService.post(this.config._postone_url,body);
-
   }
 }

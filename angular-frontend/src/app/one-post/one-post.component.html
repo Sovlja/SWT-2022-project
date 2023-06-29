@@ -1,4 +1,4 @@
-<div *ngIf="b ==1" >
+<div *ngIf="renderable ==1" >
   <form [formGroup]="formPost" (ngSubmit)="onSubmit()" >
 
     <input type="hidden" formControlName="id" value="{{post.id}}"  name="id"><br><br>
@@ -8,7 +8,6 @@
   </form>
   <button color="primary" (click)="back()" >Go Back</button>
   <br>
-
   <br>
   <br>
 </div>
