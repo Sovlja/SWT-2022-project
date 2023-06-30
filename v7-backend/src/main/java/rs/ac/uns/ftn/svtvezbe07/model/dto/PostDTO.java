@@ -23,4 +23,8 @@ public class PostDTO {
     @NotBlank
     private String creationDate;
 
+    private int likes;
+    private int dislikes;
+    private int hearts;
+
 }

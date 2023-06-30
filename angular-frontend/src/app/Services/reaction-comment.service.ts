@@ -18,21 +18,17 @@ export class ReactionCommentService {
                 private router: Router,
                 private route: ActivatedRoute,) { }
 
-  save(post:any) {
+  save(post:any, reactionInt: any) {
     const loginHeaders = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     });
-    // const body = `username=${user.username}&password=${user.password}`;
     const body = {
       'id': post.id,
-      'groupList': post.groupList,
-      'content': post.content,
-
-
+      'reactionInt': reactionInt
     };
 
-    return this.apiService.post(this.config._postsave_url, JSON.stringify(body), loginHeaders)
+    return this.apiService.post(this.config._reactionsave_url, JSON.stringify(body))
       .subscribe((res) => {
         if(res.body == "NOT_ACCEPTABLE" || res.name == "HttpErrorResponse")
         {

@@ -32,6 +32,7 @@ import { GroupsComponent } from './groups/groups.component';
 import { OneGroupComponent } from './one-group/one-group.component';
 import {MyProfileComponent} from "./my-profile/my-profile.component";
 import {AllPostsComponent} from "./all-posts/all-posts.component";
+import {ReactionCommentService} from "./Services/reaction-comment.service";
 const routes: Routes = [
   { path: '', component: HomeComponentComponent },
   { path: 'login', component: LoginComponent},

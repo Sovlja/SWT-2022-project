@@ -23,4 +23,5 @@ public class Reaction {
 
     @Column(nullable = false, name = "timestamp")
     private LocalDate timestamp;
+
 }
