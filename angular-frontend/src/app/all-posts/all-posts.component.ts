@@ -19,28 +19,25 @@ export class AllPostsComponent {
   }
   @Input() posts:any;
 
-  numberOfLikes: any;
-  numberOfDislikes: any;
-  numberOfHearts: any;
-
   reactionInt: any;
 
   react(event:any){
 
     let element = event.target || event.srcElement || event.currentTarget;
     let elementId = element.id;
-    let likeQuantity = document.getElementById("like-quantity");
-    if(element.innerText == "LIKE")
+
+
+    if(element.name == "LIKE")
     {
       this.reactionInt = 0;
     }
 
-    if(element.innerText == "DISLIKE")
+    if(element.name == "DISLIKE")
     {
       this.reactionInt = 1;
     }
 
-    if(element.innerText == "HEART")
+    if(element.name == "HEART")
     {
       this.reactionInt = 2;
     }

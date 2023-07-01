@@ -55,6 +55,7 @@ public class ReactionCommentsController {
     public HttpStatus saveReaction(Principal user, @RequestBody @Validated ReactionReceiverDTO dto) {
 
         Reaction reaction = new Reaction();
+        Post post = postService.getPostById(dto.getId());
 
         if(dto.getReactionInt() == 0)
         {
@@ -72,6 +73,8 @@ public class ReactionCommentsController {
         }
         reaction.setTimestamp(LocalDate.now());
         reactionCommentService.saveReaction(reaction);
+        post.getReactions().add(reaction);
+        postService.savePost(post);
 
         return HttpStatus.ACCEPTED;
     }

@@ -24,7 +24,7 @@ export class ReactionCommentService {
       'Content-Type': 'application/json'
     });
     const body = {
-      'id': post.id,
+      'id': post,
       'reactionInt': reactionInt
     };
 

@@ -8,11 +8,11 @@
   <label>Post Text :  </label>
   <label>{{post.content}}</label>
   <hr>
-  <button name="LIKE" (click)="react($event)">Like | {{post.likes}}</button>
+  <button name="LIKE" id="{{post.id}}" (click)="react($event)">Like | {{post.likes}}</button>
   <br>
-  <button name="DISLIKE" (click)="react($event)">Dislike | {{post.dislikes}}</button>
+  <button name="DISLIKE" id="{{post.id}}" (click)="react($event)">Dislike | {{post.dislikes}}</button>
   <br>
-  <button name="HEART" (click)="react($event)">Heart | {{post.hearts}}</button>
+  <button name="HEART" id="{{post.id}}" (click)="react($event)">Heart | {{post.hearts}}</button>
   <br>
   <br>
   <br>
