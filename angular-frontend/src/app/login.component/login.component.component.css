@@ -1,0 +1,55 @@
+.maxContainer{
+  background-color: #ff8300;
+  border-radius: 30px;
+  padding: 15px;
+  margin-left: 300px;
+  margin-right: 300px;
+}
+.formContainer{
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+}
+.buttons{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  gap: 20px;
+}
+h1{
+  text-align: center;
+}
+
+#usernameInput{
+  height: 30px;
+  width: 200px;
+  border-radius: 10px;
+}
+
+#passwordInput{
+  height: 30px;
+  width: 200px;
+  border-radius: 10px;
+}
+
+#usernameLabel{
+  font-size: 20px;
+  color: #ffffff;
+}
+
+#passwordLabel{
+  font-size: 20px;
+  color: #ffffff;
+}
+
+#loginbttn, #goBack{
+  width: 150px;
+  height: 40px;
+  border-radius: 30px;
+  background-color: #ffc400;
+}
+
+#loginbttn:hover, #goBack:hover{
+  background-color: burlywood;
+}
+

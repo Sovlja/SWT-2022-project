@@ -1,34 +1,31 @@
 <h2>Inposter - Social Network beta v0.1</h2>
-<a><button (click)="changePassword()">Change Password</button></a>
-<a><button (click)="LogOut()">Logout</button></a>
+<div class="navBar">
+  <a><button (click)="changePassword()" id="changePassword">Change Password</button></a>
+  <a><button (click)="LogOut()" id="Logout">Logout</button></a>
 
-<br>
-<br>
-<br>
-<br>
-<a href="http://localhost:4200/GroupCreate"><button>Create Group</button></a>
-<br>
-<br>
-<a href="http://localhost:4200/getCurrentUser"><button>My profile</button></a>
-<br>
-<br>
+  <a href="http://localhost:4200/GroupCreate"><button id = "groupCreate">Create Group</button></a>
+  <a href="http://localhost:4200/getCurrentUser"><button id = "myProfile">My profile</button></a>
+</div>
 <form [formGroup]="formPost" (ngSubmit)="onSubmit()">
 <div  class="container">
-  <label>Post Text : </label>
-  <input type="text" formControlName="post"  name="post" required>
+  <label class = "postTextLabel">Post Text : </label>
+  <input type="text" formControlName="post"  name="post" id="postText" required>
+  <br>
+  <label class = "postTextLabel">Destination : </label>
   <select formControlName="groupList" name="groupList" id = "groupList">
     <option [ngValue]="null" readonly disabled >Choose post destination: </option>
     <option [ngValue]="0"> Personal/My profile </option>
     <option *ngFor ="let onegroup of allGroups" [ngValue] = "onegroup.id">{{onegroup.name}}  </option>
   </select>
-
+  </div>
   <br>
-  <button type="submit">Post</button>
-
+  <div class="buttonContainer">
+    <button type="submit" id="postSubmit">Post</button>
+  </div>
   <br>
 
 
-</div>
+
 </form>
 <br>
 <br>

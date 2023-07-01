@@ -7,8 +7,6 @@
 <body>
 <div *ngIf="renderable==1" >
   <form [formGroup]="formCurrentUser" (ngSubmit)="onSubmit()" >
-
-
     <label> Profile name:  </label>
     <input type="text" formControlName="name" value="{{currentUser.displayName}}" name="text"><br><br>
     <label> Profile description:  </label>

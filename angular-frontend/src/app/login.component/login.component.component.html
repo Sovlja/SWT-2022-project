@@ -1,21 +1,22 @@
- <p  *ngIf="a == 1" class="alert alert-success" >Wrong credentials !</p>
+ <p  *ngIf="a == 1" class="alert alert-success" >Wrong credentials!</p>
+ <div class = "maxContainer">
+  <h1>LOG IN TO INPOSTER!</h1>
+  <div class="formContainer">
 
     <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
-        <label>Username: </label>
-        <input  formControlName="username"  placeholder="" required>
-
+        <label id="usernameLabel">Username: </label>
+        <input  formControlName="username"  id= "usernameInput" placeholder="Your username..." required>
       <br>
       <br>
-        <label>Password: </label>
-        <input formControlName="password"   placeholder="" required type="password">
-
-      <input type="submit" value="Login" />
-      <br>
-      <hr>
-      <button color="green" (click)="back()"  >Go Back</button>
+        <label id="passwordLabel">Password: </label>
+        <input formControlName="password"   placeholder="Your password..." id= "passwordInput" required type="password">
+        <br>
+      <div class = "buttons">
+        <input type="submit" id="loginbttn" value="Login" />
+        <br>
+        <button id="goBack" (click)="back()"  >Go Back</button>
+      </div>
     </form>
-    <br>
-
-
-    <br>
+  </div>
     <hr>
+ </div>
