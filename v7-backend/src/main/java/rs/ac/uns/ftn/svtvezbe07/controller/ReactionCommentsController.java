@@ -54,6 +54,7 @@ public class ReactionCommentsController {
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public HttpStatus saveReaction(Principal user, @RequestBody @Validated ReactionReceiverDTO dto) {
 
+        User u = this.userService.findByUsername(user.getName());
         Reaction reaction = new Reaction();
         Post post = postService.getPostById(dto.getId());
 
@@ -72,6 +73,8 @@ public class ReactionCommentsController {
             reaction.setType(ReactionType.HEART);
         }
         reaction.setTimestamp(LocalDate.now());
+        reaction.setUser(u.getId());
+        reaction.setPost(post.getId());
         reactionCommentService.saveReaction(reaction);
         post.getReactions().add(reaction);
         postService.savePost(post);

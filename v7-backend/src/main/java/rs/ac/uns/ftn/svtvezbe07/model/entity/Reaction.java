@@ -24,4 +24,13 @@ public class Reaction {
     @Column(nullable = false, name = "timestamp")
     private LocalDate timestamp;
 
+    @Column(name="user")
+    private Long user;
+
+    @Column(name="comment")
+    private Long comment;
+
+    @Column(name="post")
+    private Long post;
+
 }
