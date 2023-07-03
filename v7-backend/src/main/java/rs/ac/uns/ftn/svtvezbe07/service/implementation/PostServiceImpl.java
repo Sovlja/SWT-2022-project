@@ -7,6 +7,7 @@ import rs.ac.uns.ftn.svtvezbe07.model.dto.PostDTO;
 import rs.ac.uns.ftn.svtvezbe07.model.entity.Post;
 import rs.ac.uns.ftn.svtvezbe07.model.entity.Reaction;
 import rs.ac.uns.ftn.svtvezbe07.model.entity.ReactionType;
+import rs.ac.uns.ftn.svtvezbe07.model.entity.User;
 import rs.ac.uns.ftn.svtvezbe07.repository.PostRepository;
 import rs.ac.uns.ftn.svtvezbe07.service.UserService;
 
@@ -56,7 +57,13 @@ public class PostServiceImpl {
         List<Post> postsEntityList = postRepository.findAllByUserAndDeleted(a,false);
         for (Post post:postsEntityList) {
             PostDTO postDTO = new PostDTO();
-            postDTO.setUser(userService.findUserById(post.getUser()).getFirstname());
+            User user = userService.findUserById(post.getUser());
+            if(user.getDisplayName() != null){
+                postDTO.setUser(user.getDisplayName());
+            }
+            else{
+                postDTO.setUser(userService.findUserById(post.getUser()).getFirstname());
+            }
             postDTO.setContent(post.getContent());
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
@@ -86,7 +93,13 @@ public class PostServiceImpl {
                     postDTO.setHearts(postDTO.getHearts() + 1);
                 }
             }
-            postDTO.setUser(userService.findUserById(post.getUser()).getFirstname());
+            User user = userService.findUserById(post.getUser());
+            if(user.getDisplayName() != null){
+                postDTO.setUser(user.getDisplayName());
+            }
+            else{
+                postDTO.setUser(userService.findUserById(post.getUser()).getFirstname());
+            }
             postDTO.setContent(post.getContent());
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 

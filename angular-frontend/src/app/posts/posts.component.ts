@@ -35,7 +35,18 @@ export class PostsComponent {
       returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
       this.router.navigate([returnUrl + '/post',elementId]);
     }
-
-
   }
+  // commentFunction(event:any){
+  //   let element = event.target || event.srcElement || event.currentTarget;
+  //   let elementId = element.id;
+  //   let commentInput = document.getElementById("commentInput");
+  //
+  //   element = document.getElementById(elementId);
+  //   if (element.get().) {
+  //     element.style.visibility = 'hidden';
+  //   }
+  //
+  //
+  //
+  // }
 }
